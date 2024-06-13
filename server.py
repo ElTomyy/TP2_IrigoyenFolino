@@ -1,14 +1,35 @@
 import socket
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#Este codigo es para TCP
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# s.bind(('localhost', 12345))
+
+# s.listen()
+
+# conn, addr = s.accept()
+
+# data = conn.recv(1024)
+
+# conn.sendall("Message for client".encode())
+
+# print(data)
+
+# s.close()
+
+#Este codigo es para UDP 
+
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 s.bind(('localhost', 12345))
 
-s.listen()
+data, addr = s.recvfrom(1024)
 
-conn, addr = s.accept()
+s.sendto("Message for client".encode(), addr)
 
-data = conn.recv(1024)
+print(data)
 
-conn.sendall("Message for client".encode())
+s.close()
 
